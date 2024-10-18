@@ -1,0 +1,104 @@
+﻿
+version: '3.8'
+services:
+  app:
+    image: adminmicroservice 
+    build:
+      context: .
+      dockerfile: Dockerfile 
+    ports:
+      - "8083:80"    
+    depends_on:
+      - db           
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - dbconn="server=localhost:3306;user id=root;password=root;persistsecurityinfo=True;database=mobilemoneyaccountdb;pooling=true;Connection Timeout=30;connection lifetime=30;convert zero datetime=True";
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: yourpassword
+      MYSQL_DATABASE: yourdb
+      MYSQL_USER: root
+      MYSQL_PASSWORD: yourpassword
+    volumes:
+      - dbdata:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+volumes:
+  dbdata:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
