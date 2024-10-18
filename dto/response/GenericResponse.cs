@@ -16,6 +16,10 @@ namespace AccountAndTransactions.dto.response
             return this.MemberwiseClone();
         }
     }
+    public class PrimeAdminResponse : GenericResponse  // for the admin response
+    {
+        public object Data { set; get; }
+    }
     public enum EnumResponse
     {
         [Description("No Transactions Found")]
@@ -25,7 +29,10 @@ namespace AccountAndTransactions.dto.response
         [Description("No account Found")]
         AccountError,
         [Description("Error processing transaction")]
-        Account
+        Account,
+        SystemError,
+        [Description("successful")]
+        Successful
     }
     public static class EnumExtensions
     {
