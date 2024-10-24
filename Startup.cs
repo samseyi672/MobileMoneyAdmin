@@ -120,16 +120,37 @@ namespace AccountAndTransactions
             {
                 app.UseDeveloperExceptionPage();
             }
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
             app.UseDiscoveryClient();
             app.UseHttpsRedirection();
 
+            app.UseStaticFiles();
+            // Add your custom exception handling middleware
+            //app.UseMiddleware<ExceptionHandlingMiddleware>();
             app.UseRouting();
+            //app.UseCors("AllowSpecificOrigin");
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
-
+ 
+            //allow access to static files in security 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("v1/swagger.json", "Mobile Money Admin Back office Management Office v1");
             });
         }
     }
